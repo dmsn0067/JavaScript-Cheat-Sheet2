@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Anthony Maximus - The JavaScript Cheat Sheet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The JavaScript Cheat Sheet explanation of Javascript for beginers">
+<meta name="author" content="Anthony Maximus">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header>
+            <a href="https://anthonymaximus.com">
+                <div class="logocontainer">
+                    <h1>Anthony Maximus</h1>
+                    <h2>The Javascript Cheat Sheet - Part 2</h2>
+                </div>
+            </a>
+            
+            <nav>
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                </ol>
+            </nav>
+
+        </header>
+
+        <main>
+
+            <section>
+                <h1>Variables</h1>
+                <p>
+                    Just like in previous lessons. I have convinced you that you already understand the concept of variables. This case is no different. 
+                    Think of the words we use. What are they? They are basically variables because they store data and the data they store is what they represent. 
+                    Phone is a variable that represents a specific series of devices. So much so that in the current day phone has other variables
+                    in it like camera, calculator, web browser, general purpose computer and so on. 
+                    The words we use are not the thing. The thing is the thing. The words just represent the thing which makes it a variable. 
+
+                    We can use variables in more advanced ways when you get past the basic concept. Like putting a function into a variable.
+                </p>
+
+                <h2>We can put functions into variables</h2>
+                <p>
+                    const $variable_function = function() {
+                        <br>
+                        &emsp;'This console log is coming from a function that is stored in a variable!';
+                        <br>
+                    };
+                    <br>
+                    <br>
+                    console.log($variable_function);
+                </p>
+
+
+                <h2>We can put html elements into variables</h2>
+                <p>const $some_element = document.querySelector('.flex div:nth-child(2)');</p>
+
+                <div class="flex">
+                    <div>
+
+                    </div>
+
+                    <div>
+
+                    </div>
+
+                    <div>
+
+                    </div>
+                </div>
+
+                <p>The flexbox above's middle box's border is being controlled by a variable that contains the div and a class that was added to it using js which we have used in the CSS which has the property border and value 1px solid red. (see main.js Line:25 and style.css line:162). </p>
+
+                <p>
+                    const $flex_child = document.querySelector('.flex div:nth-child(2)');
+                    <br>
+                    $flex_child.classList.add('change-flex-child');
+                </p>
+
+                <h2>We can put the value of some thing like an input into a variable</h2>
+                <p>
+                    const $variable_text = document.getElementById('variable-text');
+                    <br>
+                    $variable_text.addEventListener('change', (e)=> {
+                        <br>
+                        &emsp;let $variable_text_value = $variable_text.value;
+                        <br>
+                        &emsp;console.log(`The text you put is: ${$variable_text_value}`);
+                        <br>
+                        &emsp;document.querySelector('.variable-text-value-box').innerText = `The text you put is: ${$variable_text_value}`;
+                        <br>
+                    });
+                </p>
+                <input type="text" id="variable-text">
+
+                <div class="variable-text-value-box">
+
+                </div>
+                
+            </section>
+
+            <hr>
+
+            <section>
+                <h1>Load the JS after the DOM</h1>
+                <h2>There are various ways you can tell the JS to load AFTER the DOM loads. Here are a few</h2>
+
+                <h2>DOMContentLoaded</h2>
+                <p>Below we say:</p>
+                <li>document add an event listener - The condition of the event is that when the DOM content is loaded (event), do this following function... </li>
+                <li>Output to the console log 'The site is fully loaded' </li>
+                <li>// All of your JS code now goes in here</li>
+                <p>
+                    document.addEventListener(DOMContentLoaded, (e)=> {
+                        <br>
+                        &emsp;console.log('The site is fully loaded');
+                        <br>
+                        &emsp;// All of your JS code now goes in here
+                        <br>
+                    });
+                </p>
+
+
+                <h2>Use defer in the script tag</h2>
+                <p>&lt;script defer src="/scripts/main.js" &gt;</p>
+                <p>Defer makes sure the script tag is posponed until after the document is loaded</p>
+
+                <h2>Just put the script tag at the bottom of the document</h2>
+                <p>
+                    Put the &lt;script&gt; tag at the end of the document, right before the closing /body tag. Because the html is rendered
+                    character by character, line by line. If you load the script last it will load last. 
+                </p>
+
+            </section>
+
+            <hr>
+
+            <section>
+                <h1>Template Literals & Expressions vs Concatination</h1>
+                <h2>A better way of passing variables through a string</h2>
+
+                <h2>Concatination🥈</h2>
+                <p>Before if you wanted to use a variable in a string you had to concatinate it using + to add the variable to the string</p>
+                <p>'This is the string within the single quotes' + var_name + 'This is another string'</p>
+
+                <h2>Template Literals🥇🏆</h2>
+                <p>Now we can just use backticks `` write the string within the backticks and pass a variable in using ${}</p>
+                <p>`This is a string within the backticks ${var_name} &leftarrow; is a variable. Everything can go in here! Much easier ya?`</p>
+                
+
+            </section>
+
+            <hr>
+
+            <section>
+                <h1>Loops</h1>
+                <h2>Loops will loop through some code until or depending if some condition is met.</h2>
+
+                <p>There are 6 types of loops, all execute depending on certain conditions that happen at different times.</p>
+
+                <br>
+
+                <table>
+                    <tr>
+                        <td>for</td>
+                        <td>When the number of iterations is known</td>
+                    </tr>
+                    <tr>
+                        <td>while</td>
+                        <td>When looping should continue until a condition is false</td>
+                    </tr>
+                    <tr>
+                        <td>do...while</td>
+                        <td>When the loop must execute at least once, then continue based on a condition</td>
+                    </tr>
+                    <tr>
+                        <td>for...in</td>
+                        <td>Looping over object properties</td>
+                    </tr>
+                    <tr>
+                        <td>for...of</td>
+                        <td>Looping over iterable values (arrays, strings, sets, etc.)</td>
+                    </tr>
+                    <tr>
+                        <td>.forEach()</td>
+                        <td>Iterating over an array with a callback function</td>
+                    </tr>
+                </table>
+                    	    
+                
+                <h2>for Loop (Standard Counting Loop)</h2>
+                <h3>Used when you know how many times the loop should run.</h3>
+
+                <p>
+                    for (let $number = 0; $number < 10; $number++){
+                        <br>
+                        &emsp;console.log($number);
+                        <br>
+                    };
+                </p>
+
+                <h2>while Loop (Condition-Based Loop)</h2>
+                <h3>Used when looping should continue until a condition becomes false</h3>
+
+                <p>
+                    let x = 10;
+                    <br>
+                    let y = 1;
+                    <br>
+                    while (y <= x) { // While y is less than or equal to x...
+                        <br>
+                        &emsp;y++; // Add 1 to y
+                        <br>
+                        &emsp;console.log(`x is equal to ${x} -  y is equal to ${y}`);
+                        <br>
+                    };
+                </p>
+
+                <h2>do...while Loop (Runs at Least Once)</h2>
+                <h3>Used when at least one execution is required before checking the condition</h3>
+
+                <p>
+                    let beers = 0;
+                    <br>
+                    do {
+                        <br>
+                        &emsp;console.log(`${beers} Beers Dranken successfully! 😵‍💫`);
+                        <br>
+                        &emsp;beers++;
+                        <br>
+                    } while (beers <= 10);
+                </p>
+
+                <p>This button is from the practical example</p>
+                <button id="prompt-btn">Activate Prompt</button>
+
+                <h2>for...in Loop (Object Property Loop)</h2>
+                <h3>Used for looping over object properties (not recommended for arrays)</h3>
+
+                <p>
+                    const person = {
+                        <br>
+                        &emsp;Name: 'Maximus',
+                        <br>
+                        &emsp;Job: Professor,
+                        <br>
+                        &emsp;City: 'Toronto'
+                        <br>
+                    };
+
+                    for (let key in person){
+                        <br>
+                        &emsp;console.log(key, person[key]);
+                        <br>
+                    };
+                </p>
+
+                <h2>for...of Loop (Iterates Over Values)</h2>
+                <h3>Used for looping over iterable values like arrays, strings, sets, or maps</h3>
+
+                <p>
+                    const playingCards = [10, 20, 30];
+                    <br>
+                    for (let num of playingCards) {
+                        <br>
+                        &emsp;console.log(num); // 10, 20, 30
+                        <br>
+                    };
+                </p>
+
+
+                <h2>.forEach() (Array Method for Iteration)</h2>
+                <h3>Used for looping through arrays with a callback function</h3>
+
+                <p>
+                    const numbers = [10, 20, 30];
+                    <br>
+                    numbers.forEach(num => console.log(num)); // 10, 20, 30
+                </p>
+               
+            </section>
+
+            <hr>
+
+            <section>
+
+                <h1>Math</h1>
+                <h2>For Quick Maths</h2>
+
+                <p>In part 1 of the JS cheat sheet, we purposfully avoided math. This time around we will dive into the basics.</p>
+
+                <h2>Basic Math Stuff</h2>
+
+                <p>To do basic math you can do it with or without variables and use the operands:</p>
+                <p>+ Plus</p>
+                <p>- Minus</p>
+                <p>* times</p>
+                <p>/ Divide</p>
+                <p>** Exponentiation</p>
+                <p>++ increment up</p>
+                <p>-- Increment down</p>
+
+                <h2>Output to console some math with no variables</h2>
+                <p>console.log(20 + 33);</p>
+
+                <h2>Using variables</h2>
+                <p>const a = 5;</p>
+                <p>const b = 10;</p>
+                <p>console.log(a + b);</p>
+
+                <h2>The Math object</h2>
+                <p>The Math object can be used to run different maths. There are many of these.</p>
+
+                <label for="magnify">Magnification On/Off</label>
+                <input type="checkbox" id="magnify" checked>
+
+                <br>
+
+                <table>
+                    <tr>
+                        <td>Math.E</td>
+                        <td>// returns Euler's number</td>
+                    </tr>
+                    <tr>
+                        <td>Math.PI</td>
+                        <td>// returns PI</td>
+                    </tr>
+                    <tr>
+                        <td>Math.SQRT2</td>
+                        <td>// returns the square root of 2</td>
+                    </tr>
+                    <tr>
+                        <td>Math.SQRT1_2</td>
+                        <td>// returns the square root of 1/2</td>
+                    </tr>
+                    <tr>
+                        <td>Math.LN2 </td>
+                        <td>// returns the natural logarithm of 2</td>
+                    </tr>
+                    <tr>
+                        <td>Math.LN10</td>
+                        <td>// returns the natural logarithm of 10</td>
+                    </tr>
+                    <tr>
+                        <td>Math.LOG2E</td>
+                        <td>// returns base 2 logarithm of E</td>
+                    </tr>
+                    <tr>
+                        <td>Math.LOG10E</td>
+                        <td>// returns base 10 logarithm of E</td>
+                    </tr>
+                </table>
+
+                <h3>// You can return them on their own or put them into a variable</h3>
+                <p>
+                    let c = Math.PI;
+                    <br>
+                    console.log(`The number PI is: ${c}`);
+                </p>
+                  
+                <h2>// Math Methods. You can use them to perform various math tasks.</h2>
+                
+                <h2>// Math.round() Round to the nearest whole number</h2>
+                <p>console.log('Math.round():' + Math.round(2.2));</p>
+                
+                <h2>// Math.ceil() Round up</h2>
+                <p>console.log('Math.ceil(): ' + Math.ceil(2.2));</p>
+                
+                <h2>// Math.floor() Round down</h2>
+                <p>console.log('Math floor: ' + Math.floor(20.4));</p>
+                
+                <h2>// Math.pow() Power of</h2>
+                <p>console.log('To the power of ' + Math.pow(2, 5));</p>
+                
+                <h2>// Math.sqrt() Square Root</h2>
+                <p>console.log('The square root ' + Math.sqrt(50));</p>
+                
+                <h2>// Math.abs() Return an absolute number (prevent negative numbers)</h2>
+                <p>console.log('Absolute Number ' + Math.abs(-200));</p>
+                
+            </section>
+
+            <hr>
+
+            <section>
+                <h1>Data Types</h1>
+                <h2>All of the data we work with has a type</h2>
+                
+
+                <li>// String       This is any text in single or double quotes like 'Professor Maximus 007' A string can contain any characters.</li>
+                <li>// Number       This is any number including ones with decimals </li>
+                <li>// Bigint       This is used to store BIG numbers like: 123812093792849324793212839898217392187947347328</li>
+                <li>// Boolean      True or False</li>
+                <li>// Undefined    If something is not defined. Like an undefined variable: let name;</li>
+                <li>// Null         Null is nothing</li>
+                <li>// Symbol       Is a built-in object whose constructor returns a symbol</li>
+                <li>// Object       This can be user defined objects or built in ones like: objects, arrays, dates, maps, sets, intarrays, floatarrays, promises, and more</li>
+
+                <p>In JS this is not as in your face as other languages. But it is still good to be aware of them.</p>
+            </section>
+
+            <hr>
+
+            <section>
+
+                <h1>Nesting Functions</h1>
+                <h2>You can put functions within functions</h2>
+
+                <p class="nestedFunctionOuter"></p>
+                <p class="nestedFunctionInner"></p>
+
+                <p>
+                    function outer() {
+                        <br>
+                        &emsp;outputBoxOuter.innerText = 'This is the Outer function!';
+                        <br>
+                        &emsp;function inner() {
+                            <br>
+                            &emsp;&emsp;outputBoxInner.innerText = 'This is the Inner function!';
+                            <br>
+                            &emsp;};
+                        <br>
+                        &emsp;inner();
+                        <br>
+                    };
+                    <br>
+                    outer();
+                </p>
+
+            </section>
+
+            <hr>
+
+            <section id="localStorageSection">
+
+                <h1>Storage</h1>
+
+                <h1>Local Storage</h1>
+                <h2>localStorage will persist until the user manually clears it out. So even if the tab is closed it will persist when the user comes back to the site.</h2>
+
+                <h2>Basic Syntax</h2>
+
+                <p>localStorage.setItem('key', 'string');</p>
+                <p>localStorage.removeItem('key');</p>
+                <p>localStorage.getItem('key');</p>
+
+                <br>
+
+                <p>Enter Your Name:</p>
+                <input type="text" id="name">
+
+                <p>It will persist even if you close the tab ⤵️</p>
+                <p id="userName"></p>
+
+                <hr>
+
+                <h1>Session Storage</h1>
+                <h2>Session storage will not persist after the tab is closed but will persist if the page is refreshed.</h2>
+
+                <h2>Basic Syntax</h2>
+
+                <p>sessionStorage.setItem('key', 'string');</p>
+                <p>sessionStorage.removeItem('key');</p>
+                <p>sessionStorage.getItem('key');</p>
+
+                <br>
+
+                <p>Enter Some Text:</p>
+                <input type="text" id="sessionStorageInput">
+
+                <p>It will persist if the page is refreshed ⤵️</p>
+                <p id="sessionStorageOutput"></p>
+                
+
+                <h1>Cookies</h1>
+                <h2>Cookies store data on the users computer in a text file.</h2>
+
+                <h2>Basic syntax</h2>
+
+                <p>document.cookie = 'Some data'</p>
+
+                <br>
+
+                <p>Make a cookie (only works online or on live server)</p>
+                <input type="text" id="cookieInput">
+
+                <p>In the web inspector, see the cookie in: Application > Cookies > file://</p>
+                <p id="cookietext"></p>
+                
+                
+
+                <br>
+                <br>
+
+                <table data-start="111" data-end="1334">
+                    <thead data-start="111" data-end="213">
+                      <tr data-start="111" data-end="213">
+                        <th data-start="111" data-end="132">Feature</th>
+                        <th data-start="132" data-end="159"><code data-start="134" data-end="148">localStorage</code></th>
+                        <th data-start="159" data-end="187"><code data-start="161" data-end="177">sessionStorage</code></th>
+                        <th data-start="187" data-end="213"><code data-start="189" data-end="198">cookies</code></th>
+                      </tr>
+                    </thead>
+                    <tbody data-start="316" data-end="1334">
+                      <tr data-start="316" data-end="480">
+                        <td><strong data-start="318" data-end="343">Data Storage Duration</strong></td>
+                        <td>Until manually cleared</td>
+                        <td>Until the session ends (browser/tab is closed)</td>
+                        <td>Can have an expiration date or last until the session ends</td>
+                      </tr>
+                      <tr data-start="481" data-end="561">
+                        <td><strong data-start="483" data-end="505">Data Storage Limit</strong></td>
+                        <td>~5MB per domain</td>
+                        <td>~5MB per domain</td>
+                        <td>~4KB per cookie</td>
+                      </tr>
+                      <tr data-start="562" data-end="730">
+                        <td><strong data-start="564" data-end="573">Scope</strong></td>
+                        <td>Accessible from all tabs and windows under the same origin</td>
+                        <td>Only accessible in the same tab</td>
+                        <td>Accessible across browser requests and sent to the server</td>
+                      </tr>
+                      <tr data-start="731" data-end="861">
+                        <td><strong data-start="733" data-end="748">Access Type</strong></td>
+                        <td>JavaScript (client-side only)</td>
+                        <td>JavaScript (client-side only)</td>
+                        <td>Sent with every HTTP request (client-server)</td>
+                      </tr>
+                      <tr data-start="862" data-end="954">
+                        <td><strong data-start="864" data-end="902">Persistence After Browser Restart?</strong></td>
+                        <td>✅ Yes</td>
+                        <td>❌ No</td>
+                        <td>✅ If expiry is set, otherwise no</td>
+                      </tr>
+                      <tr data-start="955" data-end="1140">
+                        <td><strong data-start="957" data-end="978">Security Concerns</strong></td>
+                        <td>Less secure (can be accessed via JavaScript)</td>
+                        <td>Less secure (can be accessed via JavaScript)</td>
+                        <td>Can be stolen via XSS, sent with every request, increasing risk</td>
+                      </tr>
+                      <tr data-start="1141" data-end="1334">
+                        <td><strong data-start="1143" data-end="1156">Use Cases</strong></td>
+                        <td>Storing user preferences, themes, or saved drafts</td>
+                        <td>Temporary data like form inputs or multi-step form progress</td>
+                        <td>Storing authentication tokens, user sessions, tracking info</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <p>Use localStorage for long-term storage of user settings or data that persists across visits.</p>
+                  <p>Use sessionStorage for temporary data that should disappear when the user leaves the page.</p>
+                  <p>Use cookies when data needs to be sent to the server (e.g., authentication tokens).</p>
+
+
+            </section>
+                
+        </main>
+
+        <footer>
+            <h1>HMU</h1>
+            <div>
+                <a href="https://www.youtube.com/@professormaximus9556"><img src="img/yt.png" alt="YouTube"></a>
+                <a href="https://www.instagram.com/professor_maximusxo/"><img src="img/insta.png" alt="Insta"></a>
+                <a href="https://anthonymaximus.com"><img src="img/www.png" alt="Site"></a>
+            </div>
+        </footer>
+
+    </div>
+
+<script defer src="scripts/cheatsheet.js"></script>
+<script defer src="scripts/main.js"></script>
+</body>
+
+</html>
